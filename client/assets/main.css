@@ -118,14 +118,14 @@ body {
 }
 
 header {
-  text-align: center;
+  text-align: left;
   position: relative;
-  margin: 3rem auto;
+  margin: 3rem 1rem;
   max-width: 450px;
 }
 
 header img {
-  margin-left: -1rem;
+  /* margin-left: -1rem; */
 }
 
 header::after {
@@ -133,7 +133,7 @@ header::after {
   display: block;
   position: absolute;
   width: 30%;
-  left: 35%;
+  left: 0%;
   height: 4px;
   background-color: var(--color-accent);
 }
@@ -196,7 +196,7 @@ textarea:focus {
 }
 
 .server-input button {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 .card .footer {
@@ -564,4 +564,220 @@ td:last-child {
 tr:nth-child(even) td:last-child {
   background-color: var(--color-bg);
   --shadow-bg: var(--color-bg);
+}
+
+.scan * {
+  transition: .4s all;
+}
+
+.scan .content {
+  --pos: outflow;
+  position: fixed;
+  top: 3rem;
+  right: calc(50% - (860px / 2));
+  /* right: 2rem; */
+  width: calc(860px - 2rem);
+  margin: 0 1rem;
+  height: 590px;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.scan .backdrop {
+  display: block;
+  position: fixed;
+  z-index: 4;
+  inset: 0;
+  background-color: #222222aa;
+}
+
+.scan.hidden .backdrop {
+  background-color: #00000000;
+  pointer-events: none;
+}
+
+.scan #server {
+  margin: 0;
+}
+
+.scan a {
+  color: var(--color-accent);
+}
+
+.scan .icon-open {
+  opacity: 0;
+  position: absolute;
+}
+
+.scan .icon-close {
+  position: absolute;
+  opacity: 1;
+}
+
+.scan.hidden .icon-close {
+  /* color: transparent; */
+  /* display: none; */
+  opacity: 0;
+}
+
+.scan.hidden .icon-open {
+  /* color: inherit; */
+  opacity: 1;
+  /* display: block; */
+}
+
+.scan.hidden .content {
+  position: absolute;
+  height: calc(48px + 1.5rem);
+  width: 12rem;
+  padding: 0.5rem;
+}
+
+.scan.hidden .body {
+  /* display: none; */
+  opacity: 0;
+}
+
+.scan .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.scan .title * {
+  margin: 0;
+}
+
+.scan .guide-sec {
+  max-height: 380px;
+}
+
+button.toggle-scan {
+  display: grid;
+  padding: 0;
+  place-items: center;
+  --size: 48px;
+  height: var(--size);
+  width: var(--size);
+}
+
+button.toggle-scan:hover > * {
+  transform: rotate(90deg);
+}
+
+button.toggle-scan:active > * {
+  transform: rotate(0);
+}
+
+button.toggle-scan svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media only screen and (max-width: calc(890px - 2rem)) {
+  .scan .content {
+    --pos: inflow;
+    position: static;
+    /* background-color: maroon; */
+    width: calc(100% - 2rem);
+  }
+  
+  .scan.hidden .content {
+    position: static;
+    width: calc(100% - 2rem);
+    padding: 1rem;
+  }
+
+  .scan .backdrop {
+    display: none;
+  }
+
+  .scan .guide-sec {
+    max-height: unset;
+  }
+
+  .scan #server {
+    margin-bottom: 0.75rem;
+  }
+}
+
+.scan .qr-wrapper img {
+  width: 100%;
+}
+
+.scan .qr-wrapper img[src='./assets/loader.gif'], .scan .qr-wrapper img[src='./assets/check.svg'] {
+  width: 6rem;
+}
+
+header > div {
+  display: flex;
+  gap: 2rem;
+}
+
+.lang-switcher * {
+  transition: .4s all;
+}
+
+.lang-switcher .selected.card {
+  padding: 0.5rem;
+  width: 5.5rem;
+}
+
+.lang-switcher .selected{
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.lang-switcher .flag{
+  width: 2rem;
+  display: flex;
+}
+
+.lang-switcher .selected .dropdown{
+  display: flex;
+}
+
+.lang-item {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.lang-switcher .options {
+  height: 0;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  max-width: 270px;
+  z-index: 4;
+  padding: 0;
+  border-width: 0;
+}
+
+.lang-switcher .options.shown {
+  height: 182px;
+  padding: 0.5rem;
+  border-width: 4px;
+}
+
+.lang-item.selected {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  font-weight: bold;
+}
+
+.lang-switcher .options .selected{
+  justify-content: start;
+}
+
+
+.lang-item:not(.selected):hover {
+  background-color: var(--color-main);
+  font-weight: bold;
+  cursor: pointer;
 }
