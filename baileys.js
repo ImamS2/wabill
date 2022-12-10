@@ -1,11 +1,6 @@
 "use strict"
 
-const {
-	default:makeWASocket,
-  DisconnectReason,
-	useMultiFileAuthState,
-	delay
-} = require("baileys")
+const { default: makeWASocket, DisconnectReason, useMultiFileAuthState, delay } = require('baileys')
 const pino = require('pino')
 const { rm } = require("fs");
 
@@ -33,22 +28,11 @@ const baileys = async (wa, updateQR) => {
     auth: state
   })
 
-  const sendMessageWTyping = async(msg, jid) => {
-		await sock.presenceSubscribe(jid)
-		await delay(500)
-
-		await sock.sendPresenceUpdate('composing', jid)
-		await delay(2000)
-
-		await sock.sendPresenceUpdate('paused', jid)
-
-		await sock.sendMessage(jid, msg)
-	}
-
   sock.ev.process(
 		async(events) => {
 			if(events['connection.update']) {
 				const update = events['connection.update']
+				console.log(update)
 				const { connection, lastDisconnect } = update
 				if(connection === 'close') {
 					if(lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut) {

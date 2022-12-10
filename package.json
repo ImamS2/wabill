@@ -20,6 +20,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@adiwajshing/baileys": "^4.4.0",
     "baileys": "^6.0.5",
     "express": "^4.17.1",
     "qrcode": "^1.4.4",
